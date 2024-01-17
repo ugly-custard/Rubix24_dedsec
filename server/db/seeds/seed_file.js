@@ -17,7 +17,7 @@ const seed = async () => {
       role: 'GP',
       member_name: 'biharilal',
     })
-    console.log('Added sample gp head')
+    console.log('Added sample users')
 
     // Insert into ngo table
     await db('ngos').insert({
