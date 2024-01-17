@@ -26,3 +26,4 @@ app.use('/api/auth', auth)
 app.get('/', (req, res) => {
   res.send('Hello from homepage')
 })
+
