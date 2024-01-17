@@ -13,6 +13,7 @@ import db from '../db.js'
         table.string('password').notNullable()
         table.string('role').notNullable()
         table.string('member_name')
+        table.array('location')
         table.timestamps(true, true)
       })
       console.log('GP table created!')
