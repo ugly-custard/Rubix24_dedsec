@@ -6,7 +6,7 @@ const ngoID = uuidv4()
 const seed = async () => {
   try {
     // Insert gp_head table
-    await db('gp_head').insert({
+    await db('users').insert({
       gp_id: uuidv4(),
       village_name: 'dhanushkodi',
       village_address: 'bihar',
@@ -19,7 +19,7 @@ const seed = async () => {
     console.log('Added sample gp head')
 
     // Insert into ngo table
-    await db('ngo').insert({
+    await db('ngos').insert({
       ngo_id: ngoID,
       ngo_name: 'aga khan foundation',
       ngo_type: 'jal jeevan mission',
@@ -30,19 +30,28 @@ const seed = async () => {
       member_name: 'shambhulal',
       contact_no: '1234567890',
     })
-
     console.log('Added sample ngo')
 
     // Insert into issues_table table
+    const issue_id = uuidv4()
     await db('issue_status').insert({
-      ngo_id: ngoid,
+      ngo_id: ngoID,
       issue_id: uuidv4(),
       status: `Pending`,
       ngo_officer: 'sherkhan',
     })
-
     console.log('Added sample issue !')
 
+    // Insert into issues_table table
+    const request_id = uuidv4()
+    await db('requests').insert({
+      request_id: request_id,
+      n_people: 30,
+      village_address: 'bihar',
+      status: `Pending`,
+      username: 'username',
+    })
+    console.log('Added sample issue !')
     process.exit(0)
   } catch (err) {
     console.log(err)
