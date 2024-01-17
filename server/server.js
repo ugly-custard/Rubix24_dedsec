@@ -8,6 +8,8 @@ import cors from 'cors'
 import auth from "./Auth/auth.js"
 import ngo from "./Ngo/routes.js"
 import user from "./User/routes.js"
+import issue from "./Issue/routes.js"
+import request from "./Request/routes.js"
 
 const PORT = process.env.PORT || 5000
 
@@ -25,6 +27,9 @@ app.listen(PORT, () => {
 app.use('/api/auth', auth)
 app.use('/api/ngo', ngo)
 app.use('/api/user', user)
+app.use('/api/issue', issue)
+app.use('/api/request', request)
+
 
 
 app.get('/', (req, res) => {
