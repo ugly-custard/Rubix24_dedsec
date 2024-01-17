@@ -9,7 +9,7 @@ export default knex({
         database: "username",
     },
     migrations: {
-        directory: "./migrations",
+        directory: "./migration",
     },
     seeds: {
         directory: "./seeds",
@@ -18,4 +18,4 @@ export default knex({
         min: 2,
         max: 10,
     },
-});
+
