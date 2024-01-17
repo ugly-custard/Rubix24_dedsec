@@ -5,7 +5,7 @@ import cors from 'cors'
 // import swaggerUI from 'swagger-ui-express'
 // import swaggerJSDoc from 'swagger-jsdoc'
 
-import auth from "./authentication/auth.js"
+import auth from "./Auth/auth.js"
 import ngo from "./Ngo/routes.js"
 import user from "./User/routes.js"
 import request from "./Request/routes.js"
