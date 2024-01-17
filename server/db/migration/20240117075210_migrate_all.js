@@ -2,15 +2,16 @@ import db from '../db.js'
 
 const dropAndCreateTables = async () => {
   try {
+    await db.schema.dropTableIfExists('requests')
     await db.schema.dropTableIfExists('issue_status')
     await db.schema.dropTableIfExists('users')
     await db.schema.dropTableIfExists('ngos')
-    await db.schema.dropTableIfExists('requests')
+    
 
     await db.schema.withSchema('public').createTable('users', (table) => {
       table.uuid('user_id').primary()
       table.string('village_name').notNullable()
-      table.string('village_address').notNullable()
+      table.string('village_address').unique()
       table.string('contact_no').notNullable().unique()
       table.string('email_id').notNullable().unique()
       table.string('password').notNullable()
@@ -39,7 +40,7 @@ const dropAndCreateTables = async () => {
         table.uuid('ngo_id').unique().notNullable()
         table.string('status').notNullable()
         table.string('ngo_officer').notNullable()
-        table.foreign('ngo_id').references('ngos.ngo_id')
+        table.foreign('ngo_id').references('ngos.ngo_id').onDelete('cascade')
         table.timestamps(true, true)
       })
 
