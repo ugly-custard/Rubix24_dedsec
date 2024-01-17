@@ -1,4 +1,4 @@
-import db from '../db.js'
+import db from '../db/db.js'
 import { Router } from 'express'
 
 const router = Router()
@@ -16,7 +16,7 @@ export const getAllRequests = async (req, res) => {
 export const getRequestById = async (req, res) => {
   const { id } = req.params
   try {
-    const requests = await db('requests').where({ request_id: id }).first()
+    const requests = await db('requests').where({ req_id: id }).first()
     res.status(200).json(requests)
   } catch (error) {
     res.status(500).json({ error: 'Server error' })
@@ -43,7 +43,7 @@ export const updateRequest = async (req, res) => {
   const { username, n_people } = req.body
   try {
     const requests = await db('requests')
-      .where({ request_id: id })
+      .where({ req_id: id })
       .update({ username: username, n_people })
       .returning('*')
     console.log(requests)
@@ -57,7 +57,7 @@ export const updateRequest = async (req, res) => {
 export const deleteRequest = async (req, res) => {
   const { id } = req.params
   try {
-    const requests = await db('requests').where({ request_id: id }).del()
+    const requests = await db('requests').where({ req_id: id }).del()
     console.log(requests)
     res.status(201).json(requests)
   } catch (error) {
@@ -66,23 +66,34 @@ export const deleteRequest = async (req, res) => {
   }
 }
 
-export const updateStatus = async (req, res) => {
-  const { id, next } = req.params
+export const updateRequestStatus = async (req, res) => {
+  const { id } = req.params
+  const { next } = req.body
   try {
-    const status = await db('requests')
-      .select('status')
-      .where({ request_id: id })
+    const statuses = [
+      'rejected',
+      'pending',
+      'verifying',
+      'in_process',
+      'resolved',
+    ]
+    let status = await db('requests').select('status').where({ req_id: id })
 
+    let index = statuses.indexOf(status)
+    if (index == 4) {
+      throw new Error('Status array overflowed')
+    }
     // if not already rejected and
     // if you want to update to next step
-    if (status != 0) && (next == true) {
-      status = status + 1
-    } else { // else reject
-      status = 0
+    if (status != 'rejected' && next == true) {
+      status = statuses[index + 1]
+    } else {
+      // else reject
+      status = statuses[0]
     }
 
     const requests = await db('requests')
-      .where({ request_id: id })
+      .where({ req_id: id })
       .update({ status: status })
       .returning('*')
     console.log(requests)

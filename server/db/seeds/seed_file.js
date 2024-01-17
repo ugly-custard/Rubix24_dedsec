@@ -38,7 +38,7 @@ const seed = async () => {
     await db('issue_status').insert({
       ngo_id: ngoID,
       issue_id: issue_id,
-      status: `Pending`,
+      status: `pending`,
       ngo_officer: 'sherkhan',
     })
     console.log('Added sample issue !')
@@ -49,7 +49,7 @@ const seed = async () => {
       n_people: 30,
       ngo_id: ngoID,
       user_id: userID,
-      status: `Pending`,
+      status: `pending`,
       username: 'username',
     })
     console.log('Added sample request !')

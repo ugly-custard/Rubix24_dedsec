@@ -2,6 +2,8 @@ import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 
+import requests from './Requests/routes.js'
+
 // import swaggerUI from 'swagger-ui-express'
 // import swaggerJSDoc from 'swagger-jsdoc'
 
@@ -20,9 +22,8 @@ app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`)
 })
 
-// app.use('/api/auth', auth)
+app.use('/api/requests', requests)
 
 app.get('/', (req, res) => {
   res.send('Hello from homepage')
 })
-
