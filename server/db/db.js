@@ -8,8 +8,8 @@ export default knex({
         password: "password",
         database: "username",
     },
-    migrations: {
-        directory: "./migrations",
+    migration: {
+        directory: "./migration",
     },
     seeds: {
         directory: "./seeds",
