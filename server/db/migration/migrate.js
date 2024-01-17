@@ -8,7 +8,6 @@ const migrate = async () => {
       await db.schema.withSchema('public').dropTableIfExists('requests')
       await db.schema.withSchema('public').dropTableIfExists('gp_head')
       await db.schema.withSchema('public').dropTableIfExists('ngo')
-     
       
       console.log('Dropped tables!')
 
