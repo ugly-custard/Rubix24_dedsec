@@ -11,7 +11,7 @@ const dropAndCreateTables = async () => {
     await db.schema.withSchema('public').createTable('users', (table) => {
       table.uuid('user_id').primary()
       table.string('village_name').notNullable()
-      table.string('village_address').unique()
+      table.string('village_address').notNullable()
       table.string('contact_no').notNullable().unique()
       table.string('email_id').notNullable().unique()
       table.string('password').notNullable()
@@ -47,8 +47,8 @@ const dropAndCreateTables = async () => {
     await db.schema.withSchema('public').createTable('requests', (table) => {
       table.uuid('req_id').primary()
       table.integer('n_people').notNullable()
-      table.string('user_id')
-      table.string('ngo_id')
+      table.uuid('user_id')
+      table.uuid('ngo_id')
       table.string('status').notNullable()
       table.string('username').notNullable()
       table.foreign('user_id').references('users.user_id')
