@@ -1,3 +1,4 @@
+
 import db from '../db.js'
 
 ;(async () => {
@@ -21,3 +22,4 @@ import db from '../db.js'
       process.exit(1)
     }
 })();
+
