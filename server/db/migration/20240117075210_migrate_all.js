@@ -3,10 +3,10 @@ import db from '../db.js'
 const dropAndCreateTables = async () => {
   try {
     await db.schema.dropTableIfExists('issue_status')
-    await db.schema.dropTableIfExists('gp_head')
-    await db.schema.dropTableIfExists('ngo')
+    await db.schema.dropTableIfExists('user')
+    await db.schema.dropTableIfExists('ngos')
 
-    await db.schema.withSchema('public').createTable('gp_head', (table) => {
+    await db.schema.withSchema('public').createTable('user', (table) => {
       table.uuid('gp_id').primary()
       table.string('village_name').notNullable()
       table.string('village_address').notNullable()
@@ -18,7 +18,7 @@ const dropAndCreateTables = async () => {
       table.timestamps(true, true)
     })
 
-    await db.schema.withSchema('public').createTable('ngo', (table) => {
+    await db.schema.withSchema('public').createTable('ngos', (table) => {
       table.uuid('ngo_id').primary()
       table.string('ngo_name').notNullable()
       table.string('ngo_type').notNullable()
@@ -36,7 +36,7 @@ const dropAndCreateTables = async () => {
       table.uuid('ngo_id').unique().notNullable()
       table.string('status').notNullable()
       table.string('ngo_officer').notNullable()
-      table.foreign('ngo_id').references('ngo.ngo_id')
+      table.foreign('ngo_id').references('ngos.ngo_id')
       table.timestamps(true, true)
     })
 

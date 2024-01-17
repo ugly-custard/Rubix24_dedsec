@@ -5,8 +5,8 @@ const ngoID = uuidv4()
 
 const seed = async () => {
   try {
-    // Insert gp_head table
-    await db('gp_head').insert({
+    // Insert user table
+    await db('user').insert({
       gp_id: uuidv4(),
       village_name: 'dhanushkodi',
       village_address: 'bihar',
@@ -19,7 +19,7 @@ const seed = async () => {
     console.log('Added sample gp head')
 
     // Insert into ngo table
-    await db('ngo').insert({
+    await db('ngos').insert({
       ngo_id: ngoID,
       ngo_name: 'aga khan foundation',
       ngo_type: 'jal jeevan mission',
