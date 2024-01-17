@@ -10,7 +10,7 @@ const dropAndCreateTables = async () => {
     await db.schema.withSchema('public').createTable('users', (table) => {
       table.uuid('user_id').primary().defaultTo(db.fn.uuid())
       table.string('village_name').notNullable()
-      table.string('village_address').unique()
+      table.string('village_address').notNullable()
       table.string('contact_no').notNullable().unique()
       table.string('email_id').notNullable().unique()
       table.string('password').notNullable()
