@@ -32,6 +32,6 @@ exports.up = function (knex) {
  */
 exports.down = function (knex) {
   return knex.schema
-  .dropTableIfExists('gp_head')
   .dropTableIfExists('requests')
+  .dropTableIfExists('gp_head')
 }

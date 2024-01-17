@@ -20,8 +20,8 @@ exports.up = function (knex) {
     table.increments('id').primary()
     table.string('status').notNullable()
     table.string('ngo_officer').notNullable()
-    table.increments('ngo_id').unique()
-    table.foreign('ngo_id').references('ngo.ngo_id').onDelete('cascade')
+    // table.increments('ngo_id')
+    // table.foreign('ngo_id').references('ngo.ngo_id').onDelete('cascade')
     table.timestamps(true, true)
   })
 }
@@ -32,6 +32,6 @@ exports.up = function (knex) {
  */
 exports.down = function (knex) {
   return knex.schema
-  .dropTableIfExists('ngo')
   .dropTableIfExists('issue_status')
+  .dropTableIfExists('ngo')
 }
