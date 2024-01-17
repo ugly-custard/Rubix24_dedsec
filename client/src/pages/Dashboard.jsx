@@ -1,9 +1,15 @@
 import React from 'react'
+import WaterRequest from '../components/WaterRequest'
+
+
 
 function Dashboard() {
   return (
-    <div>
+    <div className='Dashboard'>
       Dashboard
+      <WaterRequest />
+      <WaterRequest />
+      <WaterRequest />
     </div>
   )
 }
