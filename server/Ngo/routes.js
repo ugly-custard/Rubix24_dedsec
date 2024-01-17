@@ -9,4 +9,6 @@ router.post('/', controller.createNgo);
 router.put('/:id', controller.updateNgo);
 router.delete('/:id', controller.deleteNgo);
 
+router.post('/getnearestrequests', controller.getNearestRequest)
+
 export default router;
