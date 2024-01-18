@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import WaterRequest from '../components/WaterRequest'
 
 
 
 function Dashboard() {
+<<<<<<< HEAD
 
   const [waterRequests, setWaterRequests] = useState([])
 
@@ -22,10 +23,14 @@ function Dashboard() {
     getWaterRequests();
   }, [])
 
+=======
+  
+>>>>>>> parent of c9c3429 (Encrpytion and JWT added in the backend (#14))
   return (
-    <div className=''>
+    <div className='Dashboard'>
       <h1>Dashboard</h1>
 
+<<<<<<< HEAD
       <div className=''>
         {waterRequests.map(waterRequests => {
 
@@ -59,6 +64,27 @@ function Dashboard() {
         />
       </div>
 
+=======
+      <WaterRequest
+      location='1234 Main St'
+      userCount='5'
+      userName='John Doe'
+      status='Pending'
+      />
+      <WaterRequest
+      location='1234 Main St'
+      userCount='5'
+      userName='John Doe'
+      status='Pending'
+      />
+      <WaterRequest
+      location='1234 Main St'
+      userCount='5'
+      userName='John Doe'
+      status='Pending'
+      />
+      
+>>>>>>> parent of c9c3429 (Encrpytion and JWT added in the backend (#14))
     </div>
   )
 }

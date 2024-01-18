@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom"
 
 function Signup() {
 
-    // const [credentials, setCredentials] = useState({name: "", email: "", phone: "", password: "", cpassword: "" });
-
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
@@ -27,7 +25,7 @@ function Signup() {
                 throw new Error("Confirm password does not match password")
             }
 
-            const data = { email: email, password: password, role: (role.ngo ? 'ngo' : 'user'), phone: phone, username: name }
+            const data = { email: email, password: password, role: (role.ngo ? 'ngo' : 'user'), phone: phone, username: name, address: district }
 
             let res = await fetch(`http://localhost:5000/api/auth/register`, {
                 method: 'POST',
@@ -37,6 +35,7 @@ function Signup() {
                 body: JSON.stringify(data),
             })
 
+            console.log(data)
             let response = await res.json();
 
             
