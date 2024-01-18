@@ -26,7 +26,7 @@
   margin-bottom: 5px;
 }
 
-.feedbackForm input,
+/* .feedbackForm input, */
 .feedbackForm textarea {
   width: 100%;
   padding: 8px;
@@ -50,9 +50,15 @@
 .feedbackForm button:hover {
   background-color: #45a049;
 }
-/* styles.css */
 
-/* ... (existing styles) */
+.rubrics {
+  display: flex;
+  align-items: center;
+}
+
+.rubrics-label {
+  padding-right: 25px;
+}
 
 .star-rating {
   display: flex;
@@ -72,7 +78,7 @@
 
 .star:hover,
 .star.selected {
-  color: #ffcc00; /* Change this to the color you want for selected stars */
+  color: #ffcc00;
 }
 
 /* Hide the default radio button */
@@ -88,7 +94,7 @@ input[type='radio'] + .star-label {
 }
 
 input[type='radio'] + .star-label::before {
-  content: '\2022'; /* Unicode character for a bullet */
+  content: '\2022';
   position: absolute;
   top: 0;
   left: 0;
@@ -97,5 +103,5 @@ input[type='radio'] + .star-label::before {
 }
 
 input[type='radio']:checked + .star-label::before {
-  color: #ffcc00; /* Change this to the color you want for selected stars */
+  color: #ffcc00;
 }
