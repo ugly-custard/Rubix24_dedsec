@@ -4,6 +4,7 @@ import "../styles/Login.css"
 import RadioButton from '../components/RadioButton'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import GoogleTranslateWidget from '../components/googletranslate.jsx'
 
 function Login() {
 
@@ -91,6 +92,7 @@ function Login() {
                 pauseOnHover
             />
       <div className='loginBox'>
+      <GoogleTranslateWidget />
         <h2>
           Sign in to your account
         </h2>
