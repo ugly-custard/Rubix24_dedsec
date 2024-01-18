@@ -127,10 +127,10 @@ export const updateRequestStatus = async (req, res) => {
   }
 }
 
-export const getInProcessRequest = async (req, res) => {
+export const getVerifiedRequest = async (req, res) => {
   const { ngo_id } = req.body
   try {
-    const requests = await db('requests').where({ ngo_id: ngo_id, status: 'in_process' })
+    const requests = await db('requests').where({ ngo_id: ngo_id, status: 'verified' })
     res.status(200).json(requests);
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
