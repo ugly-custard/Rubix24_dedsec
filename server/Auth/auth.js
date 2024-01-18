@@ -13,9 +13,9 @@ router.post('/register', async (req, res) => {
   try {
     let user;
     if (role === 'user') {
-      user = await db('users').insert({ username: username, email: email, password: secPass, phone: phone, address: address }).returning('*');
+      user = await db('users').insert({ username: username, email: email, password: password, phone: phone, address: address }).returning('*');
     } else if (role === 'ngo') {
-      user = await db('ngos').insert({ username: username, email: email, password: secPass, phone: phone, address: address }).returning('*');
+      user = await db('ngos').insert({ username: username, email: email, password: password, phone: phone, address: address }).returning('*');
     }
     console.log(user)
     res.json({

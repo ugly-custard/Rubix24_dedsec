@@ -11,7 +11,6 @@ import Signup from './pages/Signup';
 function App() {
 
   return (
-<<<<<<< HEAD
     <> 
     <Routes >
       <Route path="/" element={<Login />} />
@@ -19,10 +18,6 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/userDashboard" element={<UserDashboard />} />
     </Routes>
-=======
-    <>
-      <Login  />
->>>>>>> parent of c9c3429 (Encrpytion and JWT added in the backend (#14))
     </>
   )
 }
