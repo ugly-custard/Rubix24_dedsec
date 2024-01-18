@@ -8,7 +8,7 @@ function NewRequest() {
     const [username, setUsername] = useState('');
     const [numberOfPeople, setNumberOfPeople] = useState('');
     const [addressLine1, setAddressLine1] = useState('');
-    const [addressLine2, setAddressLine2] = useState('');
+    const [district, setDistrict] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [postalCode, setPostalCode] = useState('');
@@ -30,7 +30,7 @@ function NewRequest() {
 
         try {
 
-            const location_response = await fetch(`https://geocode.maps.co/search?q=${location}&api_key=65a5b22dc9fad405466629dzc6a56a3`, {
+            const location_response = await fetch(`https://geocode.maps.co/search?q=${district}+${state}&api_key=65a5b22dc9fad405466629dzc6a56a3`, {
                 method: 'GET',
             }).then(res => res.json());
 
@@ -140,11 +140,11 @@ function NewRequest() {
                 </label>
                 <br />
                 <label className="form-label">
-                    Address Line 2:
+                    district:
                     <input
                         type="text"
-                        value={addressLine2}
-                        onChange={(e) => setAddressLine2(e.target.value)}
+                        value={district}
+                        onChange={(e) => setDistrict(e.target.value)}
                         className="form-input"
                     />
                 </label>
