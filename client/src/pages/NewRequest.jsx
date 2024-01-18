@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../styles/NewRequest.css"
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
@@ -11,6 +11,14 @@ function NewRequest() {
     const [location, setLocation] = useState('');
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("user"))
+        // console.log(user)
+        if (!user) {
+            navigate("/login")
+        }
+    }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,8 +35,10 @@ function NewRequest() {
             const latitude = await location_response[0].lat
             const longitude = await location_response[0].lon
 
+            const authtoken = JSON.parse(localStorage.getItem("user")).authtoken
 
-            const data = { username: username, n_people: numberOfPeople, location: location, latitude: latitude, longitude: longitude }
+
+            const data = { username: username, n_people: numberOfPeople, location: location, latitude: latitude, longitude: longitude, authtoken: authtoken }
 
             const response = await fetch(`http://localhost:5000/api/request/`, {
                 method: 'POST',
