@@ -35,7 +35,7 @@ const dropAndCreateTables = async () => {
       .createTable('issue_status', (table) => {
         table.uuid('issue_id').primary().defaultTo(db.fn.uuid())
         table.uuid('ngo_id').unique().notNullable()
-        table.string('status').notNullable().deafaultTo('pending')
+        table.string('status').notNullable().defaultTo('pending')
         table.string('ngo_officer')
         table.foreign('ngo_id').references('ngos.ngo_id').onDelete('cascade')
         table.timestamps(true, true)
