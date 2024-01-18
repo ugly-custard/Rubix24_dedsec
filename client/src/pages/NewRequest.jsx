@@ -30,7 +30,7 @@ function NewRequest() {
 
         try {
 
-            const location_response = await fetch(`https://geocode.maps.co/search?q=${district}+${state}&api_key=65a5b22dc9fad405466629dzc6a56a3`, {
+            const location_response = await fetch(`https://geocode.maps.co/search?q=${district}&api_key=65a5b22dc9fad405466629dzc6a56a3`, {
                 method: 'GET',
             }).then(res => res.json());
 
@@ -42,7 +42,7 @@ function NewRequest() {
             const authtoken = JSON.parse(localStorage.getItem("user")).authtoken
 
 
-            const data = { username: username, n_people: numberOfPeople, location: location, latitude: latitude, longitude: longitude, authtoken: authtoken }
+            const data = { username: username, n_people: numberOfPeople, location: district, latitude: latitude, longitude: longitude, authtoken: authtoken }
 
             const response = await fetch(`http://localhost:5000/api/request/`, {
                 method: 'POST',
