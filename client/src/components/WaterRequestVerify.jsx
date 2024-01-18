@@ -1,5 +1,6 @@
 import React from 'react'
 import './styles/WaterRequest.css'
+import { Link } from 'react-router-dom'
 
 const WaterRequest = (props) => {
   return (
@@ -10,7 +11,7 @@ const WaterRequest = (props) => {
         <span>By: {props.username}</span>
         <span>Status: {props.status}</span>
         <span> Ngo: {props.ngo}</span>
-        <button className='verify'>Verify</button>
+        <Link to="/VerifyInfo"><button className='verify'>Verify</button></Link>
     </div>
     
     </div>
