@@ -1,22 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import "../styles/Login.css"
 import RadioButton from '../components/RadioButton'
-
-import {useNavigate} from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function Login() {
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"))
+        // console.log(user)
+        if (user) {
+            navigate("/")
+        }
+  }, [])
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [role, setRole] = useState({ user: false, ngo: false })
+  const [role, setRole] = useState({ user: true, ngo: false })
 
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
     console.log(email, password, role);
-
 
     const data = { email: email, password: password, role: (role.ngo ? 'ngo' : 'user') };
 
@@ -26,38 +33,63 @@ function Login() {
       body: JSON.stringify(data)
     }).then(res => res.json());
 
-    const user = {
-      authtoken: response.authtoken,
-      role: role
-    }
 
     if (response.status === 'success') {
-      localStorage.setItem(user)
-      navigate("/")
+      localStorage.setItem("user", JSON.stringify({ authtoken: response.authtoken, role: data.role }))
+      toast.success('You are successfully logged in!', {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setTimeout(() => {
+        navigate("/")
+      }, 2000);
     } else {
+      toast.error(response.error, {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
       console.log(response);
-      navigate("/login");
     }
   };
 
-
   const handleChange = (e) => {
-    if (e.target.name == 'email') {
+    if (e.target.name === 'email') {
       setEmail(e.target.value)
     }
-    else if (e.target.name == 'password') {
+    else if (e.target.name === 'password') {
       setPassword(e.target.value)
     }
-    else if (e.target.name == 'user') {
+    else if (e.target.name === 'user') {
       setRole({ ngo: false, user: true })
     }
-    else if (e.target.name == 'ngo') {
+    else if (e.target.name === 'ngo') {
       setRole({ ngo: true, user: false })
     }
   }
 
   return (
     <section className='loginPage'>
+      <ToastContainer
+                position="bottom-left"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
       <div className='loginBox'>
         <h2>
           Sign in to your account
@@ -105,7 +137,7 @@ function Login() {
             <button type="submit" className='loginButton' >Sign in</button>
           </div>
           <p >
-            Don’t have an account yet? <a href="#" >Sign up</a>
+            Don’t have an account yet? <Link to="/signup">Sign up</Link>
           </p>
         </form>
       </div>

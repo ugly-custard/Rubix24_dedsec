@@ -10,16 +10,13 @@ import Signup from './pages/Signup';
 
 function App() {
 
-  const loggedIn = true;
-
   return (
     <> 
     <Routes >
-      <Route path='/login' element={<Login />} />
-      <Route path='/signup' element={<Signup />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path='/' element={<Home />} />
-      {/* <Route path='/login' element={<Login />} /> */}
-    </Routes>
+      </Routes>
     </>
   )
 }

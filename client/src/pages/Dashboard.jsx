@@ -23,7 +23,7 @@ function Dashboard() {
   }, [])
 
   return (
-    <div className=''>
+    <div className='Dashboard'>
       <h1>Dashboard</h1>
 
       <div className=''>

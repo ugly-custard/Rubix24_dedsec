@@ -1,17 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../styles/Signup.css"
 import RadioButton from '../components/RadioButton'
 import { useNavigate } from "react-router-dom"
 
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 
 function Signup() {
 
-    // const [credentials, setCredentials] = useState({name: "", email: "", phone: "", password: "", cpassword: "" });
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("user"))
+        // console.log(user)
+        if (user ) {
+            navigate("/")
+        }
+    }, [])
+
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
-    const [role, setRole] = useState({ user: false, ngo: false })
+    const [role, setRole] = useState({ user: true, ngo: false })
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
     const [district, setDistrict] = useState("")
@@ -22,12 +32,11 @@ function Signup() {
         e.preventDefault()
 
         try {
-
-            if (password != confirmPassword) {
+            if (password !== confirmPassword) {
                 throw new Error("Confirm password does not match password")
             }
 
-            const data = { email: email, password: password, role: (role.ngo ? 'ngo' : 'user'), phone: phone, username: name }
+            const data = { email, password, role: role.ngo ? 'ngo' : 'user', phone, username: name, address: district }
 
             let res = await fetch(`http://localhost:5000/api/auth/register`, {
                 method: 'POST',
@@ -39,29 +48,44 @@ function Signup() {
 
             let response = await res.json();
 
-            
-            const user = {
-                authtoken: response.authtoken,
-                role: role
-            }
 
             setEmail('')
             setPassword('')
+            setConfirmPassword('')
+            setName('')
+            setPhone('')
+            setDistrict('')
 
-            if (response.success) {
-                console.log(response)
-                localStorage.setItem(user)
-                navigate("/")
+            if (response.status === 'success') {
+                toast.success('You are successfully logged in!', {
+                    position: "top-left",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setTimeout(() => {
+                    navigate('/login')
+                }, 2000);
             }
             else {
+                toast.error(response.error, {
+                    position: "top-left",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
                 console.log(response)
             }
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error.message)
         }
     }
-
 
     const handleChange = (e) => {
         if (e.target.name == 'email') {
@@ -93,6 +117,17 @@ function Signup() {
 
     return (
         <section className='loginPage'>
+            <ToastContainer
+                position="bottom-left"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <div className='loginBox'>
                 <h2>
                     Sign Up
