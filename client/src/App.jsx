@@ -8,6 +8,7 @@ import {Routes, Route} from 'react-router-dom'
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import NewRequest from './pages/NewRequest';
+import VerificationPage from './pages/VerificationPage';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/newRequest" element={<NewRequest />} />
+      <Route path="/verify" element={<VerificationPage />} />
       <Route path='/' element={<Home />} />
       </Routes>
     </>
