@@ -9,3 +9,10 @@
     padding: 10px;
     border: 1px solid black;
 }
+.table-row-green {
+  background-color: #00FF00;
+}
+
+.table-row-yellow {
+  background-color: #FFFF00;
+}

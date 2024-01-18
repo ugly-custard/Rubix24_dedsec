@@ -22,9 +22,20 @@ function Dashboard() {
     getWaterRequests();
   }, [])
 
+  const ngo_id = "abcd1234"
+  const ngo_name = "NGO1"
+
   return (
     <div className='Dashboard'>
       <h1>Dashboard</h1>
+
+      <p>
+        ngo id: {ngo_id}
+      </p>
+
+      <p>ngo name: {ngo_name}</p>
+
+      <h1>water requests</h1>
 
       <div className=''>
         {waterRequests.map(waterRequests => {
@@ -44,18 +55,21 @@ function Dashboard() {
           userCount='5'
           userName='John Doe'
           status='Pending'
+          campaign='held'
         />
         <WaterRequest
           location='1234 Main St'
           userCount='5'
           userName='John Doe'
           status='Pending'
+          campaign='left'
         />
         <WaterRequest
           location='1234 Main St'
           userCount='5'
           userName='John Doe'
           status='Pending'
+          campaign='held'
         />
       </div>
 
