@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import WaterRequest from '../components/WaterRequest'
 
-
-
 function Dashboard() {
 
   const [waterRequests, setWaterRequests] = useState([])
@@ -24,6 +22,17 @@ function Dashboard() {
 
   const ngo_id = "abcd1234"
   const ngo_name = "NGO1"
+
+  const handleClick = (req_id) => {
+    setWaterRequests(prevWaterRequests => {
+      return prevWaterRequests.map(waterRequest => {
+        if (waterRequest.req_id === req_id) {
+          return { ...waterRequest, campaign: 'held' };
+        }
+        return waterRequest;
+      });
+    });
+  }
 
   return (
     <div className='Dashboard'>
@@ -47,6 +56,8 @@ function Dashboard() {
               userCount={waterRequests.n_people}
               userName={waterRequests.username}
               status={waterRequests.status}
+              campaign={waterRequests.campaign}
+              onclick={handleClick}
             />
           )
         })}
@@ -56,6 +67,7 @@ function Dashboard() {
           userName='John Doe'
           status='Pending'
           campaign='held'
+          onclick={handleClick}
         />
         <WaterRequest
           location='1234 Main St'
@@ -63,6 +75,7 @@ function Dashboard() {
           userName='John Doe'
           status='Pending'
           campaign='left'
+          onclick={handleClick}
         />
         <WaterRequest
           location='1234 Main St'
@@ -70,6 +83,7 @@ function Dashboard() {
           userName='John Doe'
           status='Pending'
           campaign='held'
+          onclick={handleClick}
         />
       </div>
 
