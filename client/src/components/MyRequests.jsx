@@ -35,7 +35,7 @@ function MyRequests() {
   return (
     <div className='my__requests'>
       <h1>MyRequests</h1>
-      {waterRequests.map(request => {
+      {waterRequests.length > 0 && waterRequests.map(request => {
 
         return (
           <WaterRequest
