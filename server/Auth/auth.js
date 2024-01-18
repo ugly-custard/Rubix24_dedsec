@@ -13,15 +13,9 @@ router.post('/register', async (req, res) => {
   try {
     let user;
     if (role === 'user') {
-<<<<<<< HEAD
       user = await db('users').insert({ username: username, email: email, password: secPass, phone: phone, address: address }).returning('*');
     } else if (role === 'ngo') {
       user = await db('ngos').insert({ username: username, email: email, password: secPass, phone: phone, address: address }).returning('*');
-=======
-      user = await db('users').insert({name: username, email: email, password: password, phone: phone, location:location, address: address}).returning('*');
-    } else if (role === 'ngo') {
-      user = await db('ngos').insert({name: username, email: email, password: password, phone: phone, location:location, address: address}).returning('*');
->>>>>>> parent of c9c3429 (Encrpytion and JWT added in the backend (#14))
     }
     console.log(user)
     res.json({
