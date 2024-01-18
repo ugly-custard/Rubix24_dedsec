@@ -11,117 +11,108 @@ const userID2 = uuidv4()
 const userID3 = uuidv4()
 const userID4 = uuidv4()
 const userID5 = uuidv4()
+const officerID1 = uuidv4()
 
 const seed = async () => {
   try {
     // Insert users table
     await db('users').insert({
       user_id: userID1,
-      village_name: 'dhanushkodi',
-      village_address: 'sangli',
-      contact_no: '1234567890',
-      email_id: 'user1@gmail.com',
+      username: 'user1',
+      address: 'sangli',
+      phone: '1234567890',
+      email: 'user1@gmail.com',
       password: '1',
-      role: 'user',
-      member_name: 'biharilal',
+      member_name: null,
     })
     await db('users').insert({
       user_id: userID2,
-      village_name: 'bimbal',
-      village_address: 'nashik',
-      contact_no: '1234567891',
-      email_id: 'user2@gmail.com',
+      username: 'user2',
+      address: 'nashik',
+      phone: '1234567891',
+      email: 'user2@gmail.com',
       password: '2',
-      role: 'user',
-      member_name: 'shambhu',
+      member_name: null,
     })
     await db('users').insert({
       user_id: userID3,
-      village_name: 'ayugya',
-      village_address: 'pune',
-      contact_no: '1234567892',
-      email_id: 'user3@gmail.com',
+      username: 'user3',
+      address: 'pune',
+      phone: '1234567892',
+      email: 'user3@gmail.com',
       password: '3',
-      role: 'user',
-      member_name: 'chintamani',
+      member_name: null,
     })
     await db('users').insert({
       user_id: userID4,
-      village_name: 'pinchkoli',
-      village_address: 'solapur',
-      contact_no: '1234567893',
-      email_id: 'user4@gmail.com',
+      username: 'user4',
+      address: 'solapur',
+      phone: '1234567893',
+      email: 'user4@gmail.com',
       password: '4',
-      role: 'user',
-      member_name: 'chetan',
+      member_name: null,
     })
     await db('users').insert({
       user_id: userID5,
-      village_name: 'sitarampur',
-      village_address: 'aurangabad',
-      contact_no: '1234567894',
-      email_id: 'user5@gmail.com',
+      username: 'user5',
+      address: 'aurangabad',
+      phone: '1234567894',
+      email: 'user5@gmail.com',
       password: '5',
-      role: 'user',
-      member_name: 'banke',
+      member_name: null,
     })
     console.log('Added sample users ')
 
     // Insert into ngo table
     await db('ngos').insert({
       ngo_id: ngoID1,
-      ngo_name: 'aga khan foundation',
+      username: 'aga khan foundation',
       ngo_type: 'jal jeevan mission',
-      ngo_address: 'sangli',
-      email_id: 'ngo1@gmail.com',
+      address: 'sangli',
+      email: 'ngo1@gmail.com',
       password: '1',
-      role: 'NGO',
       member_name: 'shambhulal',
-      contact_no: '1234567890',
+      phone: '1234567890',
     })
     await db('ngos').insert({
       ngo_id: ngoID2,
-      ngo_name: 'shambhaji trust',
+      username: 'shambhaji trust',
       ngo_type: 'jal jeevan mission',
-      ngo_address: 'nashik',
-      email_id: 'ngo2@gmail.com',
+      address: 'nashik',
+      email: 'ngo2@gmail.com',
       password: '2',
-      role: 'NGO',
       member_name: 'shambhulal',
-      contact_no: '1234567891',
+      phone: '1234567891',
     })
     await db('ngos').insert({
       ngo_id: ngoID3,
-      ngo_name: 'paani jeevan foundation',
+      username: 'paani jeevan foundation',
       ngo_type: 'jal jeevan mission',
-      ngo_address: 'pune',
-      email_id: 'ngo3@gmail.com',
+      address: 'pune',
+      email: 'ngo3@gmail.com',
       password: '3',
-      role: 'NGO',
       member_name: 'shambhulal',
-      contact_no: '1234567892',
+      phone: '1234567892',
     })
     await db('ngos').insert({
       ngo_id: ngoID4,
-      ngo_name: 'nanhe paani foundation',
+      username: 'nanhe paani foundation',
       ngo_type: 'jal jeevan mission',
-      ngo_address: 'solapur',
-      email_id: 'ngo4@gmail.com',
+      address: 'solapur',
+      email: 'ngo4@gmail.com',
       password: '4',
-      role: 'NGO',
       member_name: 'shambhulal',
-      contact_no: '1234567893',
+      phone: '1234567893',
     })
     await db('ngos').insert({
       ngo_id: ngoID5,
-      ngo_name: 'chote haath foundation',
+      username: 'chote haath foundation',
       ngo_type: 'jal jeevan mission',
-      ngo_address: 'aurangabad',
-      email_id: 'ngo5@gmail.com',
+      address: 'aurangabad',
+      email: 'ngo5@gmail.com',
       password: '5',
-      role: 'NGO',
       member_name: 'shambhulal',
-      contact_no: '1234567894',
+      phone: '1234567894',
     })
     console.log('Added sample ngo')
 
@@ -135,12 +126,21 @@ const seed = async () => {
     })
     console.log('Added sample issue !')
 
+    await db('verification_officer').insert({
+      officer_id: officerID1,
+      username: 'max payne',
+      email: 'officer1@gmail.com',
+      password: '1',
+    })
+    console.log('Added sample verification officers !')
+
     // Insert into requests table
     await db('requests').insert({
       req_id: uuidv4(),
       n_people: 30,
       ngo_id: ngoID1,
       user_id: userID1,
+      officer_id: officerID1,
       status: `pending`,
       username: 'username',
     })
