@@ -1,5 +1,9 @@
 import db from '../db/db.js'
 import { Router } from 'express'
+import jwt from 'jsonwebtoken'
+
+const JWT_SECRET = "5f4b50a65065027be65580a99edcfdafcf432098e88b4bed93073db34bcb18d5"
+
 
 const router = Router()
 
@@ -24,14 +28,33 @@ export const getRequestById = async (req, res) => {
   }
 }
 
+export const getRequestforUser = async (req, res) => {
+  const { authtoken } = req.body
+
+  const token = jwt.verify(authtoken, JWT_SECRET)
+  const user_id = token.user.user_id
+
+  try {
+    const requests = await db('requests').where({ user_id: user_id })
+    res.status(200).json(requests)
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' })
+    console.error('Login error:', error)
+  }
+}
+
 export const createRequests = async (req, res) => {
-  const { username, n_people } = req.body
+  const { username, n_people, location, latitude, longitude, authtoken } = req.body
+
+  const token = jwt.verify(authtoken, JWT_SECRET)
+  const user_id = token.user.user_id
+
   try {
     const requests = await db('requests')
-      .insert({ username: username, n_people: n_people })
+      .insert({ username: username, n_people: n_people, longitude: longitude, latitude: latitude, location: location, user_id: user_id })
       .returning('*')
     console.log(requests)
-    res.status(201).json(requests)
+    res.status(201).json({status: 'success'})
   } catch (error) {
     console.error('Registration error:', error)
     res.status(500).json({ error: 'Server error' })
