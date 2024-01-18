@@ -126,3 +126,14 @@ export const updateRequestStatus = async (req, res) => {
     res.status(500).json({ error: 'Server error' })
   }
 }
+
+export const getInProcessRequest = async (req, res) => {
+  const { ngo_id } = req.body
+  try {
+    const requests = await db('requests').where({ ngo_id: ngo_id, status: 'in_process' })
+    res.status(200).json(requests);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+    console.error('Login error:', error);
+  }
+}

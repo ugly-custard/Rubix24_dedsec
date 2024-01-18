@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Dashboard from './Dashboard'
 import UserDashboard from './UserDashboard'
 import { useNavigate } from 'react-router-dom'
@@ -8,21 +8,21 @@ const Home = () => {
 
     const navigate = useNavigate()
 
-    let role = null
+    const [role, setRole] = useState(null)
     
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("user"))
-        // console.log(user)
+        console.log(user)
         if (!user) {
             navigate("/login")
         }
         else{
-            role = JSON.parse(localStorage.getItem("user")).role
+            setRole(user.role)
         }
     }, [])
     return (
         <>
-            {role == 'ngo'
+            {role === 'ngo'
                 ? <Dashboard />
                 : <UserDashboard />
             }

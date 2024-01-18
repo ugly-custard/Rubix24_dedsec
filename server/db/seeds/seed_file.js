@@ -144,7 +144,7 @@ const seed = async () => {
       ngo_id: ngoID1,
       user_id: userID1,
       officer_id: officerID1,
-      status: `pending`,
+      status: `in_process`,
       username: 'username',
     })
     console.log('Added sample request !')

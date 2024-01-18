@@ -38,26 +38,26 @@ function Dashboard() {
     <div className='Dashboard'>
       <h1>Dashboard</h1>
 
-      <p>
+      {/* <p>
         ngo id: {ngo_id}
       </p>
 
-      <p>ngo name: {ngo_name}</p>
+      <p>ngo name: {ngo_name}</p> */}
 
       <h1>water requests</h1>
 
       <div className=''>
-        {waterRequests.map(waterRequests => {
+        {waterRequests.map((waterRequest) => {
 
           return (
             <WaterRequest
-              key={waterRequests.req_id}
-              location={waterRequests.location}
-              userCount={waterRequests.n_people}
-              userName={waterRequests.username}
-              status={waterRequests.status}
-              campaign={waterRequests.campaign}
-              onclick={handleClick}
+              key={waterRequest.req_id}
+              location={waterRequest.location}
+              userCount={waterRequest.n_people}
+              username={waterRequest.username}
+              status={waterRequest.status}
+              campaign={waterRequest.campaign}
+              onclick={waterRequest}
             />
           )
         })}
