@@ -10,4 +10,6 @@ router.put('/:id', controller.updateRequest)
 router.delete('/:id', controller.deleteRequest)
 router.put('/:id/status', controller.updateRequestStatus)
 
+router.post('/getrequestforuser', controller.getRequestforUser)
+
 export default router
