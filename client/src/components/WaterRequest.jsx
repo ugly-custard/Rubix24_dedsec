@@ -9,6 +9,7 @@ const WaterRequest = (props) => {
         <p>For People: {props.userCount}</p>
         <span>By: {props.username}</span>
         <span>Status: {props.status}</span>
+        <span> Ngo: {props.ngo}</span>
     </div>
     
     </div>
