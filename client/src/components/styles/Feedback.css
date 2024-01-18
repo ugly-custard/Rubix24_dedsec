@@ -1,0 +1,101 @@
+.feedback {
+  max-width: 400px;
+  margin: 50px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.feedback h2 {
+  text-align: center;
+  color: #333;
+}
+
+.feedbackForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedbackForm div {
+  margin-bottom: 15px;
+}
+
+.feedbackForm label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.feedbackForm input,
+.feedbackForm textarea {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.feedbackForm button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.feedbackForm button:hover {
+  background-color: #45a049;
+}
+/* styles.css */
+
+/* ... (existing styles) */
+
+.star-rating {
+  display: flex;
+  font-size: 24px;
+  margin-top: 5px;
+}
+
+.star-label {
+  margin-right: 10px;
+}
+
+.star {
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.star:hover,
+.star.selected {
+  color: #ffcc00; /* Change this to the color you want for selected stars */
+}
+
+/* Hide the default radio button */
+input[type='radio'] {
+  position: absolute;
+  opacity: 0;
+}
+
+/* Style the custom radio button */
+input[type='radio'] + .star-label {
+  position: relative;
+  cursor: pointer;
+}
+
+input[type='radio'] + .star-label::before {
+  content: '\2022'; /* Unicode character for a bullet */
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 24px;
+  color: #ccc;
+}
+
+input[type='radio']:checked + .star-label::before {
+  color: #ffcc00; /* Change this to the color you want for selected stars */
+}
