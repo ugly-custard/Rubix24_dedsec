@@ -136,5 +136,4 @@ except FileNotFoundError:
     model.save("model_keras.keras")
 
 out, queries = reply(sys.argv[1])
-print(out)
-print(queries)
+print(f"{{'out': '{out}', 'queries': {queries}}}")

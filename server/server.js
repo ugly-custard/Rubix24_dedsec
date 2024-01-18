@@ -32,7 +32,7 @@ app.use('/api/ngo', ngo)
 app.use('/api/user', user)
 app.use('/api/issue', issue)
 app.use('/api/request', request)
-app.use('/api/chatbot', request)
+app.use('/api/chatbot', chatbot)
 
 app.get('/', (req, res) => {
   res.send('Hello from homepage')
