@@ -28,6 +28,21 @@ export const getRequestById = async (req, res) => {
   }
 }
 
+export const getRequestforUser = async (req, res) => {
+  const { authtoken } = req.body
+
+  const token = jwt.verify(authtoken, JWT_SECRET)
+  const user_id = token.user.user_id
+
+  try {
+    const requests = await db('requests').where({ user_id: user_id })
+    res.status(200).json(requests)
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' })
+    console.error('Login error:', error)
+  }
+}
+
 export const createRequests = async (req, res) => {
   const { username, n_people, location, latitude, longitude, authtoken } = req.body
 

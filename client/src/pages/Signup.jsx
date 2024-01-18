@@ -57,7 +57,7 @@ function Signup() {
             setDistrict('')
 
             if (response.status === 'success') {
-                toast.success('You are successfully logged in!', {
+                toast.success('Your account is created Successfully !', {
                     position: "top-left",
                     autoClose: 5000,
                     hideProgressBar: false,
