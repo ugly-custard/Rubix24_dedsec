@@ -2,6 +2,8 @@ import React from 'react'
 import WaterRequest from './WaterRequest'
 import './styles/MyRequests.css'
 
+//needs to be mapped using key and onclick open page with status
+
 function MyRequests() {
   return (
     <div className='my__requests'>
