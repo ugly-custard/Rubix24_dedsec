@@ -10,15 +10,13 @@ import Signup from './pages/Signup';
 
 function App() {
 
-  const loggedIn = true;
-
   return (
     <> 
     <Routes >
-      <Route path='/login' element={<Login />} />
-      <Route path='/signup' element={<Signup />} />
-      <Route path='/' element={<Home />} />
-      {/* <Route path='/login' element={<Login />} /> */}
+      <Route path="/" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/userDashboard" element={<UserDashboard />} />
     </Routes>
     </>
   )

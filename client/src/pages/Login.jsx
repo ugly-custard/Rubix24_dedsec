@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import "../styles/Login.css"
 import RadioButton from '../components/RadioButton'
 
-import {useNavigate} from 'react-router-dom'
-
 function Login() {
-
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [role, setRole] = useState({ user: false, ngo: false })
@@ -14,9 +12,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
     console.log(email, password, role);
-
 
     const data = { email: email, password: password, role: (role.ngo ? 'ngo' : 'user') };
 
@@ -33,25 +29,28 @@ function Login() {
 
     if (response.status === 'success') {
       localStorage.setItem(user)
-      navigate("/")
+      if (role.ngo) {
+        navigate("/dashboard")
+      } else {
+        navigate("/userDashboard")
+      }
     } else {
       console.log(response);
-      navigate("/login");
+      navigate("/");
     }
   };
 
-
   const handleChange = (e) => {
-    if (e.target.name == 'email') {
+    if (e.target.name === 'email') {
       setEmail(e.target.value)
     }
-    else if (e.target.name == 'password') {
+    else if (e.target.name === 'password') {
       setPassword(e.target.value)
     }
-    else if (e.target.name == 'user') {
+    else if (e.target.name === 'user') {
       setRole({ ngo: false, user: true })
     }
-    else if (e.target.name == 'ngo') {
+    else if (e.target.name === 'ngo') {
       setRole({ ngo: true, user: false })
     }
   }
@@ -105,7 +104,7 @@ function Login() {
             <button type="submit" className='loginButton' >Sign in</button>
           </div>
           <p >
-            Don’t have an account yet? <a href="#" >Sign up</a>
+            Don’t have an account yet? <Link to="/signup">Sign up</Link>
           </p>
         </form>
       </div>
