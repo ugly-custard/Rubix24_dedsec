@@ -7,12 +7,14 @@ function VerifyInfo() {
     const [groundWaterPresent, setGroundWaterPresent] = useState(false);
     const [projectType, setProjectType] = useState('');
     const [ngo, setNgo] = useState('');
+    const [reportInfo, setReportInfo] = useState('');
 
     const handleVerify = () => {
         console.log(waterSources);
         console.log(groundWaterPresent);
         console.log(projectType);
         console.log(ngo);
+        console.log(reportInfo);
     };
 
     return (
@@ -29,7 +31,7 @@ function VerifyInfo() {
                     />
                 </label>
                 <br />
-                <label className="label">
+                <label className="label1">
                     Ground Water Present:
                     <input
                         className="radio"
@@ -69,6 +71,16 @@ function VerifyInfo() {
                         <option value="NGO 2">NGO 2</option>
                         <option value="NGO 3">NGO 3</option>
                     </select>
+                </label>
+                <br />
+                <label className="label">
+                    Report Info:
+                    <input
+                        className="report-info"
+                        type="text"
+                        value={reportInfo}
+                        onChange={(e) => setReportInfo(e.target.value)}
+                    />
                 </label>
                 <br />
                 <button className="button" type="button" onClick={handleVerify}>
