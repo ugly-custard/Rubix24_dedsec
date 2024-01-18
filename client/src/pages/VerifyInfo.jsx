@@ -48,6 +48,23 @@ function VerifyInfo() {
                     />
                     No
                 </label>
+                <label className="label1">
+                    Type of Project:
+                    <input
+                        className="radio"
+                        type="radio"
+                        checked={groundWaterPresent}
+                        onChange={() => setGroundWaterPresent(!groundWaterPresent)}
+                    />
+                    Contamination
+                    <input
+                        className="radio"
+                        type="radio"
+                        checked={!groundWaterPresent}
+                        onChange={() => setGroundWaterPresent(!groundWaterPresent)}
+                    />
+                    Build Project
+                </label>
                 <br />
                 <label className="label">
                     Project Type:
