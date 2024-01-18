@@ -48,8 +48,9 @@ function MyRequests() {
           />
         )
       })}
+
     </div>
-  )
+  );
 }
 
-export default MyRequests
+export default MyRequests;

@@ -1,20 +1,18 @@
-.requestCard {
-  display: flex;
-    flex-direction: column;
-  background-color: white;
-  color: black;
-  border-radius: 1rem;
-  width: 30rem;
-  text-align: left;
-  padding: 0.2rem;
-  border: 1px solid black;
+.table-row{
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
-.verify {
-  background-color: green;
-  color: white;
-  text-align: center;
-  margin: 0rem 13rem;
-  padding: 0.2rem;
-  border: 1px solid black;
+.table-cell{
+    padding: 10px;
+    border: 1px solid black;
+}
+.table-row-green {
+  background-color: #00FF00;
+}
+
+.table-row-yellow {
+  background-color: #FFFF00;
 }

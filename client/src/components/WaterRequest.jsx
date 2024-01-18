@@ -1,19 +1,24 @@
-import React from 'react'
-import './styles/WaterRequest.css'
+import React, { useState } from 'react';
+import './styles/WaterRequest.css';
 
 const WaterRequest = (props) => {
+
+  const rowClassName = props.campaign === 'held' ? 'table-row-green' : 'table-row-yellow';
+
+  const handleClick = () => {
+    props.campaign('left')
+  };
+
   return (
-    <div className='card'>
-    <div className='requestCard'>
-        <h2>Location: {props.location}</h2>
-        <p>For People: {props.userCount}</p>
-        <span>By: {props.username}</span>
-        <span>Status: {props.status}</span>
-        <span> Ngo: {props.ngo}</span>
-    </div>
-    
-    </div>
-  )
+    <tr className={rowClassName}>
+      <td className='table-cell'>{props.location}</td>
+      <td className='table-cell'>{props.userCount}</td>
+      <td className='table-cell'>{props.userName}</td>
+      <td className='table-cell'>{props.status}</td>
+      <td className='table-cell'>{props.campaign}</td>
+      <td className='table-cell'><button onClick={handleClick}>Campaigning done</button></td>
+    </tr>
+  );
 }
 
-export default WaterRequest
+export default WaterRequest;
