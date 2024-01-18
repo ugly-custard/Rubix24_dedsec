@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 const Home = () => {
-    const role = 'NGO'
+    const role = 'user'
 
     const navigate = useNavigate()
 
