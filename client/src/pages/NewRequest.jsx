@@ -30,7 +30,7 @@ function NewRequest() {
 
         try {
 
-            const location_response = await fetch(`https://geocode.maps.co/search?q=${location}&api_key=65a5b22dc9fad405466629dzc6a56a3`, {
+            const location_response = await fetch(`https://geocode.maps.co/search?q=${district+state}&api_key=65a5b22dc9fad405466629dzc6a56a3`, {
                 method: 'GET',
             }).then(res => res.json());
 
