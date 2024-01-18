@@ -2,11 +2,15 @@ import React, { useState } from 'react'
 import "../styles/Login.css"
 import RadioButton from '../components/RadioButton'
 
+import {useNavigate} from 'react-router-dom'
+
 function Login() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [role, setRole] = useState({ user: false, ngo: false })
+
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,24 +18,26 @@ function Login() {
     console.log(email, password, role);
 
 
-    // const data = { email: email, password: password, role: (role.ngo ? 'ngo' : 'user') };
+    const data = { email: email, password: password, role: (role.ngo ? 'ngo' : 'user') };
 
-    // const response = await fetch('/api/auth/login', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(data)
-    // }).then(res => res.json());
+    const response = await fetch('http://localhost:5000/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(res => res.json());
 
-    // if (response.status === 'success') {
-    //   if (data.role === 'ngo') {
-    //     navigate("/ngodashboard");
-    //   } else {
-    //     navigate("/userdashboard");
-    //   }
-    // } else {
-    //   console.log(response);
-    //   navigate("/");
-    // }
+    const user = {
+      authtoken: response.authtoken,
+      role: role
+    }
+
+    if (response.status === 'success') {
+      localStorage.setItem(user)
+      navigate("/")
+    } else {
+      console.log(response);
+      navigate("/login");
+    }
   };
 
 
