@@ -8,6 +8,7 @@ const Home = () => {
 
     const navigate = useNavigate()
 
+    let role = null
     
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("user"))
