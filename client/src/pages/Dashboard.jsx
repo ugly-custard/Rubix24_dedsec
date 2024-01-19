@@ -121,6 +121,7 @@ function Dashboard() {
           campaign='held'
           onclick={handleClick}
         />
+        </div>
       </div>
     </>
   )
