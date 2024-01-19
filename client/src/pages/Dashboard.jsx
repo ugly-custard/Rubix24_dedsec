@@ -9,28 +9,43 @@ function Dashboard() {
     localStorage.removeItem('user') // remove user from local storage
   }
 
-  const getWaterRequests = async () => {
-    try {
-      const response = await fetch(
-        'http://localhost:5000/api/request/getverifiedrequest',
-        {
-          method: 'POST', // or 'PUT'
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ authToken: localStorage.getItem('user') }),
-        },
-      )
-      const jsonData = await response.json()
-      setWaterRequests(jsonData)
-      console.log(jsonData)
-    } catch (err) {
-      console.error(err)
-    }
-  }
+  // const getWaterRequests = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       'http://localhost:5000/api/request/getverifiedrequest',
+  //       {
+  //         method: 'POST', // or 'PUT'
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify({ authToken: localStorage.getItem('user') }),
+  //       },
+  //     )
+  //     const jsonData = await response.json()
+  //     setWaterRequests(jsonData)
+  //     console.log(jsonData)
+  //   } catch (err) {
+  //     console.error(err)
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   getWaterRequests()
+  // }, [])
 
   useEffect(() => {
-    getWaterRequests()
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/request')
+        const data = await response.json()
+        setWaterRequests(data)
+        console.log(data)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    fetchData()
   }, [])
 
 
@@ -97,30 +112,6 @@ function Dashboard() {
             />
           )
         })}
-        <WaterRequest
-          location='1234 Main St'
-          userCount='5'
-          userName='John Doe'
-          status='Pending'
-          campaign='held'
-          onclick={handleClick}
-        />
-        <WaterRequest
-          location='1234 Main St'
-          userCount='5'
-          userName='John Doe'
-          status='Pending'
-          campaign='left'
-          onclick={handleClick}
-        />
-        <WaterRequest
-          location='1234 Main St'
-          userCount='5'
-          userName='John Doe'
-          status='Pending'
-          campaign='held'
-          onclick={handleClick}
-        />
         </div>
       </div>
     </>

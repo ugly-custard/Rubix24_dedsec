@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import WaterRequest from './WaterRequest'
+import WaterRequest1 from './WaterRequest1'
 import './styles/MyRequests.css'
 
 //needs to be mapped using key and onclick open page with status
@@ -38,7 +38,7 @@ function MyRequests() {
       {waterRequests.length > 0 && waterRequests.map(request => {
 
         return (
-          <WaterRequest
+          <WaterRequest1
             key={request.req_id}
             location={request.location}
             userCount={request.n_people}
