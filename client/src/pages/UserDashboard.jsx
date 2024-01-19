@@ -4,16 +4,20 @@ import DashboardInfo from '../components/DashboardInfo'
 import CreateRequest from '../components/CreateRequest'
 import MyRequests from '../components/MyRequests'
 import Feedback from '../components/Feedback'
+import Navbar from '../components/Navbar'
 
 const UserDashboard = () => {
   return (
-    <div className="user__dashboard">
-      <h1>UserDashboard</h1>
-      <CreateRequest />
-      <MyRequests />
-      <DashboardInfo />
-      <Feedback />
-    </div>
+    <>
+      <Navbar />
+      <div className="user__dashboard">
+        <h1>UserDashboard</h1>
+        <CreateRequest />
+        <MyRequests />
+        <DashboardInfo />
+        <Feedback />
+      </div>
+    </>
   )
 }
 
