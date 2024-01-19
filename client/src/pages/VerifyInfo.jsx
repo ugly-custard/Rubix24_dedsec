@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import '../styles/VerifyInfo.css'; // Import the CSS file
 import RadioButton from '../components/RadioButton';
 
+import {useParams} from 'react-router-dom'
+
 function VerifyInfo() {
 
     const [waterSources, setWaterSources] = useState('');
@@ -25,12 +27,17 @@ function VerifyInfo() {
         getNgos()
     }, [])
 
-    const handleVerify = () => {
-        console.log(waterSources);
-        console.log(groundWaterPresent);
-        console.log(projectType);
-        console.log(ngos);
-        console.log(reportInfo);
+    const {id} = useParams()
+
+    const handleVerify = async () => {
+
+        const response = await fetch(`http://localhost:5000/api/request/updatestatus/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({next: true})
+        }).then(res => res.json());
+
+        console.log(response)
     };
 
     const handleChange = (e) => {
@@ -122,10 +129,10 @@ function VerifyInfo() {
                 <br />
                 <label className="label">
                     NGO:
-                    <select className="select" value={ngos} onChange={(e) => setNgos(e.target.value)}>
+                    <select className="select" >
                         <option value="">Select</option>
                         {ngos.map((ngo) => {
-                            return(
+                            return (
                                 <option value={ngo} key={ngo}>{ngo}</option>
                             )
                         })}

@@ -11,7 +11,7 @@ function VerificationPage() {
         const response = await fetch('http://localhost:5000/api/request')
         const data = await response.json()
         setWaterRequests(data)
-        console.log(waterRequests)
+        console.log(data)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
@@ -31,6 +31,7 @@ function VerificationPage() {
           userCount={req.n_people}
           username={req.username}
           status={req.status}
+          id={req.req_id}
           key={req.req_id}
         />
       ))}

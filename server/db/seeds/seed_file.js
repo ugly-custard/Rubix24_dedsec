@@ -144,8 +144,8 @@ const seed = async () => {
       ngo_id: ngoID1,
       user_id: userID1,
       officer_id: officerID1,
-      status: `in_process`,
-      username: 'username',
+      status: `pending`,
+      username: 'Ramu',
     })
     console.log('Added sample request !')
     process.exit(0)

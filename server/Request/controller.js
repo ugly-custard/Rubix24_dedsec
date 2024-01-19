@@ -100,9 +100,13 @@ export const updateRequestStatus = async (req, res) => {
       'in_process',
       'resolved',
     ]
-    let status = await db('requests').select('status').where({ req_id: id })
+    // const status = await db('requests').select('status').where({ req_id: id })
+    let query = await db('requests').select('status').whereRaw("req_id::text = ?", [id]);
+
+    let status = query[0].status
 
     let index = statuses.indexOf(status)
+
     if (index == 4) {
       throw new Error('Status array overflowed')
     }
