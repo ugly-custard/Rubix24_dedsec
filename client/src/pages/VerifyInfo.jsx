@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../styles/VerifyInfo.css' // Import the CSS file
 import RadioButton from '../components/RadioButton'
 
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 
 function VerifyInfo() {
@@ -158,9 +158,9 @@ function VerifyInfo() {
             />
           </label>
           <br />
-          <button className="button" type="button" onClick={handleVerify}>
+          <Link to="/verify"><button className="button" type="button" onClick={handleVerify}>
             Verify
-          </button>
+          </button></Link>
         </form>
       </div>
     </>
