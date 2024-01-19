@@ -96,7 +96,7 @@ export const updateRequestStatus = async (req, res) => {
     const statuses = [
       'rejected',
       'pending',
-      'verifying',
+      'verified',
       'in_process',
       'resolved',
     ]
