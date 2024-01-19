@@ -46,6 +46,7 @@ router.post('/login', async (req, res) => {
     }
     console.log(user)
 
+
     const authtoken = jwt.sign({user: user}, JWT_SECRET)
     if (user && user.password === password) {
       res.status(200).json({

@@ -132,7 +132,10 @@ export const updateRequestStatus = async (req, res) => {
 }
 
 export const getVerifiedRequest = async (req, res) => {
-  const { ngo_id } = req.body
+  const { authtoken } = req.body
+  const token = jwt.verify(authtoken, JWT_SECRET)
+
+  const ngo_id = token.user.ngo_id
   try {
     const requests = await db('requests').where({ ngo_id: ngo_id, status: 'verified' })
     res.status(200).json(requests);
