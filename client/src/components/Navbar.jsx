@@ -13,6 +13,7 @@ const Navbar = () => {
     <nav>
       <h2>AquaConnect</h2>
       <div className="right">
+        <p>In case of Emergency contact: 011-24362705</p>
         <GoogleTranslateWidget />
         <button className="logout-btn" onClick={handleClick}>
           Log Out

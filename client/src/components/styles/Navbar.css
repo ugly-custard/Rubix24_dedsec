@@ -26,6 +26,13 @@ nav .right {
 
 .logout-btn {
   margin-left: 20px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 1px solid #159ad3;
+  color: #159ad3;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 /* nav ul li { */
