@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <nav>
       <h2>AquaConnect</h2>
-      <div>
+      <div className="right">
         <GoogleTranslateWidget />
         <button className="logout-btn" onClick={handleClick}>
           Log Out
