@@ -11,7 +11,7 @@ const WaterRequest = (props) => {
         <span>By: {props.username}</span>
         <span>Status: {props.status}</span>
         <span> Ngo: {props.ngo}</span>
-        <Link to="/VerifyInfo"><button className='verify'>Verify</button></Link>
+        <Link to={`/verify/${props.id}`} ><button className='verify'>Verify</button></Link>
     </div>
     
     </div>

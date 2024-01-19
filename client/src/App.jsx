@@ -20,7 +20,7 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/newRequest" element={<NewRequest />} />
       <Route path="/verify" element={<VerificationPage />} />
-      <Route path="/VerifyInfo" element={<VerifyInfo />} />
+      <Route path="/verify/:id" element={<VerifyInfo />} />
       <Route path='/' element={<Home />} />
       </Routes>
     </>
