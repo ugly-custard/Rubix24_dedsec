@@ -30,16 +30,36 @@ function Dashboard() {
     getWaterRequests()
   }, [])
 
-
-  const handleClick = (req_id) => {
-    setWaterRequests(prevWaterRequests => {
-      return prevWaterRequests.map(waterRequest => {
-        if (waterRequest.req_id === req_id) {
-          return { ...waterRequest, campaign: 'held' };
-        }
-        return waterRequest;
+  const handleVerify = async (req_id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/request/updatestatus/${req_id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ next: true }),
       });
-    });
+      const jsonData = await response.json();
+      console.log(jsonData);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  const handleCampaignDone = async (req_id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/request/updatestatus/${req_id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ done: true }),
+      });
+      const jsonData = await response.json();
+      console.log(jsonData);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   return (
@@ -65,7 +85,8 @@ function Dashboard() {
               username={waterRequest.username}
               status={waterRequest.status}
               campaign={waterRequest.campaign}
-              onclick={waterRequest}
+              onclick={handleCampaignDone(waterRequest.req_id)}
+              onverify={handleVerify(waterRequest.req_id)}
             />
           )
         })}
