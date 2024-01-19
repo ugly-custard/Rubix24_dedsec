@@ -1,5 +1,5 @@
 import React from 'react'
-import './styles/WaterRequest.css'
+import './styles/WaterRequestVerify.css'
 import { Link } from 'react-router-dom'
 
 const WaterRequest = (props) => {

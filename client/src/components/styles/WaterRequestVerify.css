@@ -1,0 +1,39 @@
+/* styles/WaterRequestVerify.css */
+
+.card {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  }
+  
+  .requestCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .requestCard h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .requestCard p {
+    font-size: 16px;
+    color: #666;
+  }
+
+  .requestCard button {
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px auto;
+    background-color: #00FF00;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
