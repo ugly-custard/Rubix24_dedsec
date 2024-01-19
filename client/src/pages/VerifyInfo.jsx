@@ -1,21 +1,52 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/VerifyInfo.css'; // Import the CSS file
+import RadioButton from '../components/RadioButton';
 
 function VerifyInfo() {
 
     const [waterSources, setWaterSources] = useState('');
-    const [groundWaterPresent, setGroundWaterPresent] = useState(false);
-    const [projectType, setProjectType] = useState('');
-    const [ngo, setNgo] = useState('');
+    // const [groundWaterPresent, setGroundWaterPresent] = useState(false);
+    const [projectType, setProjectType] = useState({ Contamination: false, Build: true });
+    const [ngos, setNgos] = useState([]);
     const [reportInfo, setReportInfo] = useState('');
+
+    const [groundWaterPresent, setGroundWaterPresent] = useState({ Yes: false, No: true })
+
+
+    const getNgos = async () => {
+        const response = await fetch(`http://localhost:5000/api/ngo`).then(res => res.json())
+
+        console.log(response)
+        const ngoNames = response.map((ngo) => (ngo.username))
+        setNgos(ngoNames)
+    }
+
+    useEffect(() => {
+        getNgos()
+    }, [])
 
     const handleVerify = () => {
         console.log(waterSources);
         console.log(groundWaterPresent);
         console.log(projectType);
-        console.log(ngo);
+        console.log(ngos);
         console.log(reportInfo);
     };
+
+    const handleChange = (e) => {
+        if (e.target.name == 'Yes') {
+            setGroundWaterPresent({ Yes: true, No: false })
+        }
+        else if (e.target.name == 'No') {
+            setGroundWaterPresent({ Yes: false, No: true })
+        }
+        else if (e.target.name == 'Contamination') {
+            setProjectType({ Contamination: true, Build: false })
+        }
+        else if (e.target.name == 'Build') {
+            setProjectType({ Contamination: false, Build: true })
+        }
+    }
 
     return (
         <div className="verify-info">
@@ -32,38 +63,47 @@ function VerifyInfo() {
                 </label>
                 <br />
                 <label className="label1">
-                    Ground Water Present:
-                    <input
-                        className="radio"
-                        type="radio"
-                        checked={groundWaterPresent}
-                        onChange={() => setGroundWaterPresent(!groundWaterPresent)}
+                    <span style={{ padding: '0rem 1rem' }}>Ground Water Present:</span>
+
+                    <RadioButton
+                        name="Yes"
+                        id="Yes"
+                        value="Yes"
+                        onChange={handleChange}
+                        checked={groundWaterPresent.Yes}
+                        text="Yes"
                     />
-                    Yes
-                    <input
-                        className="radio"
-                        type="radio"
-                        checked={!groundWaterPresent}
-                        onChange={() => setGroundWaterPresent(!groundWaterPresent)}
+
+                    <RadioButton
+                        name="No"
+                        id="No"
+                        value="No"
+                        onChange={handleChange}
+                        checked={groundWaterPresent.No}
+                        text="No"
                     />
-                    No
+
                 </label>
                 <label className="label1">
-                    Type of Project:
-                    <input
-                        className="radio"
-                        type="radio"
-                        checked={groundWaterPresent}
-                        onChange={() => setGroundWaterPresent(!groundWaterPresent)}
+                    <span style={{ padding: '0rem 1rem' }}>Type of Project:</span>
+
+                    <RadioButton
+                        name="Contamination"
+                        id="Contamination"
+                        value="Contamination"
+                        onChange={handleChange}
+                        checked={projectType.Contamination}
+                        text="Contamination"
                     />
-                    Contamination
-                    <input
-                        className="radio"
-                        type="radio"
-                        checked={!groundWaterPresent}
-                        onChange={() => setGroundWaterPresent(!groundWaterPresent)}
+
+                    <RadioButton
+                        name="Build"
+                        id="Build"
+                        value="Build"
+                        onChange={handleChange}
+                        checked={projectType.Build}
+                        text="Build"
                     />
-                    Build Project
                 </label>
                 <br />
                 <label className="label">
@@ -82,11 +122,13 @@ function VerifyInfo() {
                 <br />
                 <label className="label">
                     NGO:
-                    <select className="select" value={ngo} onChange={(e) => setNgo(e.target.value)}>
+                    <select className="select" value={ngos} onChange={(e) => setNgos(e.target.value)}>
                         <option value="">Select</option>
-                        <option value="NGO 1">NGO 1</option>
-                        <option value="NGO 2">NGO 2</option>
-                        <option value="NGO 3">NGO 3</option>
+                        {ngos.map((ngo) => {
+                            return(
+                                <option value={ngo} key={ngo}>{ngo}</option>
+                            )
+                        })}
                     </select>
                 </label>
                 <br />
