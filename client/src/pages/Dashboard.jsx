@@ -5,9 +5,19 @@ function Dashboard() {
 
   const [waterRequests, setWaterRequests] = useState([])
 
+  const handleLogOut = () => {
+    localStorage.removeItem("user") // remove user from local storage
+  }
+
   const getWaterRequests = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/request");
+      const response = await fetch("http://localhost:5000/api/request/getverifiedrequest", {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ngo_id: "c0d15370-1e0a-43dd-87da-ef3e7b5a44d2" }),
+      });
       const jsonData = await response.json();
       setWaterRequests(jsonData);
       console.log(jsonData);
@@ -17,7 +27,7 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    getWaterRequests();
+    getWaterRequests()
   }, [])
 
   const ngo_id = "abcd1234"
@@ -86,6 +96,8 @@ function Dashboard() {
           onclick={handleClick}
         />
       </div>
+
+      <button className='logout' onClick={handleLogOut}>logout</button>
 
     </div>
   )
