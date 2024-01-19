@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import '../styles/Signup.css'
 import RadioButton from '../components/RadioButton'
 import { useNavigate } from 'react-router-dom'
+import GoogleTranslateWidget from '../components/googletranslate.jsx'
 
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import Navbar from '../components/Navbar'
+
 
 function Signup() {
   useEffect(() => {
@@ -112,7 +113,6 @@ function Signup() {
 
   return (
     <>
-      <Navbar />
       <section className="loginPage">
         <ToastContainer
           position="bottom-left"
@@ -127,6 +127,7 @@ function Signup() {
         />
         <div className="loginBox">
           <h2>Sign Up</h2>
+          <GoogleTranslateWidget />
           <div className="radioBox">
             <span>Sign up as :</span>
             <RadioButton

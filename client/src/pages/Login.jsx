@@ -5,7 +5,7 @@ import RadioButton from '../components/RadioButton'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import GoogleTranslateWidget from '../components/googletranslate.jsx'
-import Navbar from '../components/Navbar.jsx'
+
 
 function Login() {
   useEffect(() => {
@@ -83,7 +83,6 @@ function Login() {
 
   return (
     <>
-      <Navbar />
       <section className="loginPage">
         <ToastContainer
           position="bottom-left"
@@ -98,6 +97,7 @@ function Login() {
         />
         <div className="loginBox">
           <h2>Sign in to your account</h2>
+          <GoogleTranslateWidget />
           <div className="radioBox">
             <span>Sign in as :</span>
             <RadioButton

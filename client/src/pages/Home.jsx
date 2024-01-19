@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Dashboard from './Dashboard'
 import UserDashboard from './UserDashboard'
 import { useNavigate } from 'react-router-dom'
-import Navbar from '../components/Navbar'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -20,7 +19,6 @@ const Home = () => {
   }, [])
   return (
     <>
-      <Navbar />
       {role === 'ngo' ? <Dashboard /> : <UserDashboard />}
     </>
   )
