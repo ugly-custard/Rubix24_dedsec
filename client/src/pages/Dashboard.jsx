@@ -16,7 +16,7 @@ function Dashboard() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ngo_id: "c0d15370-1e0a-43dd-87da-ef3e7b5a44d2" }),
+        body: JSON.stringify({ authToken: localStorage.getItem("user") }),
       });
       const jsonData = await response.json();
       setWaterRequests(jsonData);
@@ -30,8 +30,6 @@ function Dashboard() {
     getWaterRequests()
   }, [])
 
-  const ngo_id = "abcd1234"
-  const ngo_name = "NGO1"
 
   const handleClick = (req_id) => {
     setWaterRequests(prevWaterRequests => {
